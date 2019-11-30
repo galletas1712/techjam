@@ -120,7 +120,7 @@ const nearest = (req, res) => {
     res.statusMessage = "Request was ill-formed";
     res.status(400).end();
   }
-  let mndist = 1e9;
+  let mndist = 3e18;
   let ans = -1;
   for (let entry of map) {
     const dx = entry[1].x - req.body.ref_position.x;
