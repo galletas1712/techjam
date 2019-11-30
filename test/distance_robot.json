@@ -1,0 +1,8 @@
+{
+    "first_pos": "robot#10",
+    "second_pos": {
+        "x" : 3,
+        "y" : 4
+    },
+    "metric": "manhattan"
+}
