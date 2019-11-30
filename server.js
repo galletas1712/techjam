@@ -14,5 +14,6 @@ app.post("/distance", baseline.distance);
 app.put("/robot/:id/position", baseline.setposition);
 app.get("/robot/:id/position", baseline.getposition);
 app.post("/nearest", baseline.nearest);
+app.get("/closestpair", baseline.closestpair);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
