@@ -1,8 +1,8 @@
 {
-    "first_pos": "robot#10",
-    "second_pos": {
-        "x" : 3,
-        "y" : 4
+    "first_pos": {
+        "x" : -102321982,
+        "y" : -102919283
     },
-    "metric": "manhattan"
+    "second_pos": "robot#9",
+    "metric": "euclidean"
 }
