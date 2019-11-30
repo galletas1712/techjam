@@ -95,15 +95,13 @@ const setposition = (req, res) => { // Works
     res.status(204).end();
 };
 
-const getposition = (req, res) => {
-    console.log(map);
+const getposition = (req, res) => { // Works
     const ss = "robot#" + req.params.id;
     if (map.has(ss) === false) {
         res.statusMessage = "Unrecognized robot ID";
         res.status(404).end();
     }
     res.send({ position: map.get(ss) });
-    map.set(ss, req.body.position);
     res.statusMessage = "Position of the robot is retrieved";
     res.status(204).end();
 };
