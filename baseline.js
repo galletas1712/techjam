@@ -110,7 +110,7 @@ const getposition = (req, res) => {
 };
 
 const nearest = (req, res) => {
-  // Works
+  // Works ?
   if (
     req.body.ref_position === undefined ||
     req.body.ref_position.x == undefined ||
@@ -121,22 +121,35 @@ const nearest = (req, res) => {
     res.statusMessage = "Request was ill-formed";
     res.status(400).end();
   }
-  let mndist = 3e18;
-  let ans = -1;
+  let k = 1;
+  if (req.body.k !== undefined) {
+    if (typeof req.body.k !== "number") {
+      res.statusMessage = "Request was ill-formed";
+      res.status(400).end();
+    } else {
+      k = req.body.k;
+    }
+  }
+  k = Math.min(k, map.size);
+  let points = [];
   for (let entry of map) {
     const dx = entry[1].x - req.body.ref_position.x;
     const dy = entry[1].y - req.body.ref_position.y;
     const dist = dx * dx + dy * dy;
-    if (dist < mndist) {
-      mndist = dist;
-      [_, ans] = entry[0].split("#");
-    }
+    let xx = 0;
+    [_, xx] = entry[0].split("#");
+    points.push([dist, xx]);
   }
-  if (ans === -1) {
-    res.send({ robot_ids: [] });
-  } else {
-    res.send({ robot_ids: [ans] });
+  points.sort((a, b) => {
+    if (a[0] === b[0]) return a[1] - b[1];
+    return a[0] - b[0];
+  });
+  let i;
+  let ans = [];
+  for (i = 0; i < k; ++i) {
+    ans.push(points[i][1]);
   }
+  res.send({ robot_ids: [] });
   res.statusMessage = "IDs of nearby robots are returned";
   res.status(200).end();
 };
