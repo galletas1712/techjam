@@ -156,8 +156,8 @@ const nearest = (req, res) => {
 
 const getClosestPair = require("./closest_pair");
 
-const closestpair = (req, res) => {
-  if (map.size() <= 1) {
+const closestpair = (req, res) => { // Works
+  if (map.size <= 1) {
     res.statusMessage = "Insufficient data to compute the result";
     res.status(424).end();
   }

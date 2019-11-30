@@ -1,0 +1,10 @@
+http PUT localhost:8000/robot/1/position \
+    position:='{"x": 0, "y": 0}'
+http PUT localhost:8000/robot/2/position \
+    position:='{"x": -4, "y": 1}'
+http PUT localhost:8000/robot/3/position \
+    position:='{"x": -7, "y": -2}'
+http PUT localhost:8000/robot/4/position \
+    position:='{"x": 4, "y": 5}'
+http PUT localhost:8000/robot/5/position \
+    position:='{"x": 1, "y": 1}'
