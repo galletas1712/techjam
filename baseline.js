@@ -138,7 +138,6 @@ const nearest = (req, res) => {
     const dist = dx * dx + dy * dy;
     let xx = 0;
     [_, xx] = entry[0].split("#");
-    // assert(parseInt(xx) !== NaN);
     points.push([dist, parseInt(xx)]);
   }
   points.sort((a, b) => {
