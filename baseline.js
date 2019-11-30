@@ -138,7 +138,8 @@ const nearest = (req, res) => {
     const dist = dx * dx + dy * dy;
     let xx = 0;
     [_, xx] = entry[0].split("#");
-    points.push([dist, xx]);
+    // assert(parseInt(xx) !== NaN);
+    points.push([dist, parseInt(xx)]);
   }
   points.sort((a, b) => {
     if (a[0] === b[0]) return a[1] - b[1];
@@ -149,14 +150,15 @@ const nearest = (req, res) => {
   for (i = 0; i < k; ++i) {
     ans.push(points[i][1]);
   }
-  res.send({ robot_ids: [] });
+  res.send({ robot_ids: ans });
   res.statusMessage = "IDs of nearby robots are returned";
   res.status(200).end();
 };
 
 const getClosestPair = require("./closest_pair");
 
-const closestpair = (req, res) => { // Works
+const closestpair = (req, res) => {
+  // Works
   if (map.size <= 1) {
     res.statusMessage = "Insufficient data to compute the result";
     res.status(424).end();
